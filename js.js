@@ -3,7 +3,7 @@ function pw_check() {
     let pw_in = document.getElementById("pw_in").value;
     if (pw_in == pw) {
         setCookie("Success");
-        window.location.href = "success.html";
+        window.location.href = "final.html";
     } else {
         document.getElementById("g_out").innerHTML = "You guess wrongly lah!" + "<br />" + "Attempts: " + t.toString();
         if (t == 9) {
@@ -11,7 +11,7 @@ function pw_check() {
         }
         else if (t == 10) {
             setCookie("Failed.");
-            window.location.href = "fail.html";
+            window.location.href = "final.html";
         }
     }
   }
@@ -42,7 +42,6 @@ function expired(time) {
 function pass() {
     text = document.cookie
     let result = text.slice(5, 12)
-    window.confirm(text)
     if (result == "Failed.") {
         return false
     }
@@ -58,4 +57,13 @@ function pass() {
         }
     }
 
+}
+
+function fResult() {
+    if (pass() == false) {
+        document.getElementById("out").innerHTML = "Locked out.";
+    }
+    else if (pass == true) {
+        document.getElementById("out").innerHTML = "You Win!";
+    }
 }
