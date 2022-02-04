@@ -9,15 +9,15 @@ body {
 
 h2 {
     color:#FFFFFF;
-    align: center;
+    align-content: center;
 }
 
 br {
     color:#FFFFFF;
-    align: center;
+    align-content: center;
 }
 
 p {
     color:#FFFFFF;
-    align: center;
+    align-content: center;
 }
