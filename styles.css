@@ -8,13 +8,16 @@ body {
 }
 
 h2 {
-    color:#FFFFFF
+    color:#FFFFFF;
+    align: center;
 }
 
 br {
-    color:#FFFFFF
+    color:#FFFFFF;
+    align: center;
 }
 
 p {
-    color:#FFFFFF   
+    color:#FFFFFF;
+    align: center;
 }
