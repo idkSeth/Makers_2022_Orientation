@@ -1,0 +1,20 @@
+body {
+    background-color: #000000;
+    margin: 0; 
+    position: absolute; 
+    top: 50%; left: 50%; 
+    transform: translate(-50%, -50%);
+    font-family: Verdana;
+}
+
+h2 {
+    color:#FFFFFF
+}
+
+br {
+    color:#FFFFFF
+}
+
+p {
+    color:#FFFFFF   
+}
