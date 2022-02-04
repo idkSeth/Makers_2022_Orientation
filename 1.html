@@ -2,6 +2,8 @@
 <html>
 
   <script src="js.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
 
   <head>
     <link rel="stylesheet" href="styles.css">
@@ -11,17 +13,17 @@
 
 <h2>Instagram Password Guessing Game</h2>
 
-<p>Please input xx.death.xx password (it's "gangster")</p>
+<p>Please input xx.death.xx password</p>
+<p>You have 10 attempts</p>
 
 <input id="pw_in" type="password">
 
-<button type="button" onclick="myFunction()">Submit</button>
+<button type="button" onclick="pw_check()">Submit</button>
 <br><p id="g_out"></p><br>
 
 <script>
 t = 0
-pw = "gangster"
-guess = false
+pw = "728yishun"
 </script>
 
 </body>
