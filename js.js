@@ -1,13 +1,19 @@
 function pw_check() {
-    t = t + 1
-    let pw_in = document.getElementById("pw_in").value;
+    if (t <= 10) {
+        t = t + 1;
+    }
+    else {
+        window.location.href = "final.html";
+    }
+    let pw_in = document.getElementById("pw_in").value.toLowerCase();
     if (pw_in == pw) {
         setCookie("Success");
         window.location.href = "final.html";
     } else {
         document.getElementById("g_out").innerHTML = "You guess wrongly lah!" + "<br />" + "Attempts: " + t.toString();
+        setCookie("Reset..")
         if (t == 9) {
-            window.confirm("Last Attempt!")
+            window.confirm("Attempt 9: Last Attempt!")
         }
         else if (t == 10) {
             setCookie("Failed.");
@@ -17,21 +23,21 @@ function pw_check() {
   }
 
 function setCookie(cvalue) {
-    const d = new Date();
+    d = new Date();
     let time = d.getTime();
-    chash = hash(cvalue, time);
-    document.cookie = "main =" + cvalue + "," + chash + "," + time + ";path=/";
+    let chash = hash(cvalue, time.toString());
+    document.cookie = "main =" + cvalue + "," + chash + "," + time.toString() + ";path=/";
   }
 
-function hash(cvalue,time) {    
-    var passhash = CryptoJS.MD5(CryptoJS.MD5(cvalue).toString()+CryptoJS.MD5(time).toString()).toString();
+function hash(hvalue,time) {    
+    passhash = CryptoJS.MD5(CryptoJS.MD5(hvalue).toString()+CryptoJS.MD5(time).toString()).toString();
     return passhash
 }   
 
 function expired(time) {
-    const d = new Date();
+    d = new Date();
     let currentTime = Number(d.getTime());
-    if (time + 700000 <= currentTime) {
+    if (Number(time) + 120000 <= currentTime) {
         return true
     }
     else {
@@ -40,15 +46,18 @@ function expired(time) {
 }
 
 function pass() {
-    text = document.cookie
-    let result = text.slice(5, 12)
+    text = document.cookie;
+    let time = text.slice(46);
+    let cookieHash = text.slice(13,45);
+    let result = text.slice(5, 12);
     if (result == "Failed.") {
         return false
     }
+    else if (expired(time) == true) {
+        return false
+    }
     else {
-        value = "Success";  
-        let time = text.slice(45);
-        let cookieHash = text.slice(12,45);
+        value = "Success";
         if (hash(value,time) == cookieHash) {
             return true
         }
@@ -63,7 +72,7 @@ function fResult() {
     if (pass() == false) {
         document.getElementById("out").innerHTML = "Locked out.";
     }
-    else if (pass == true) {
+    else if (pass() == true) {
         document.getElementById("out").innerHTML = "You Win!";
     }
 }
