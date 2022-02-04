@@ -5,7 +5,8 @@ function pw_check() {
     else {
         window.location.href = "final.html";
     }
-    let pw_in = document.getElementById("pw_in").value.toLowerCase();
+    var pw_in = document.getElementById("pw_in").value.toLowerCase();
+    document.getElementById("pw_in").value=null;
     if (pw_in == pw) {
         setCookie("Success");
         window.location.href = "final.html";
