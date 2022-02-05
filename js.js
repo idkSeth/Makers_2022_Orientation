@@ -5,16 +5,24 @@ function pw_check() {
     else {
         window.location.href = "final.html";
     }
-    var pw_in = document.getElementById("pw_in").value.toLowerCase();
+    var pw_in = CryptoJS.MD5(document.getElementById("pw_in").value.toLowerCase()).toString();
     document.getElementById("pw_in").value=null;
     if (pw_in == pw) {
         setCookie("Success");
         window.location.href = "final.html";
     } else {
-        document.getElementById("g_out").innerHTML = "You guess wrongly lah!" + "<br />" + "Attempts: " + t.toString();
-        setCookie("Reset..")
+        document.getElementById("g_out").innerHTML = "You guess wrongly lah!";
+        document.getElementById("attempts").innerHTML = "Attempts: " + t.toString();
+        setCookie("Reset..");
         if (t == 9) {
+            createClass('.attempt',"color: #ff0000;");
             window.confirm("Attempt 9: Last Attempt!")
+        }
+        else if (4 <= t < 7) {
+            createClass('.attempt',"color: #c7a002");
+        }
+        else if (t >= 7) {
+            createClass('.attempt',"color: #ff9808");
         }
         else if (t == 10) {
             setCookie("Failed.");
@@ -72,8 +80,20 @@ function pass() {
 function fResult() {
     if (pass() == false) {
         document.getElementById("out").innerHTML = "Locked out.";
+        createClass('.outColor',"color: #b30707;");
     }
     else if (pass() == true) {
         document.getElementById("out").innerHTML = "You Win!";
+        createClass('.outColor',"color: #2ff56d;");
     }
+}
+
+function createClass(name,rules){
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    document.getElementsByTagName('head')[0].appendChild(style);
+    if(!(style.sheet||{}).insertRule) 
+        (style.styleSheet || style.sheet).addRule(name, rules);
+    else
+        style.sheet.insertRule(name+"{"+rules+"}",0);
 }
